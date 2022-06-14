@@ -11,6 +11,22 @@
 
 <body>
 
+    <script>
+        function Header() {
+            return ( <
+                div className = 'header' > Header < /div>
+            )
+        }
+        const app = ( <
+            div className = "wrapper" >
+            <
+            Header / >
+            <
+            div className = 'content' > Content < /div> <
+            /div>
+        )
+        ReactDOM.render(app, document.getElementById('root'));
+    </script>
 </body>
 
 </html>
