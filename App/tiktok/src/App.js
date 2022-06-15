@@ -74,12 +74,11 @@ function App() {
   }
 
   const handleCheck = (id) => {
-    setCheckbox(pre => {
-      const isChecked = checkbox.includes(id)
-      if(isChecked) {
-        return checkbox.filter(item => item !== id)
+    setCheckbox( (prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((el) => el !== id);
       } else {
-        return [...pre, id];
+        return [...prev, id];
       }
     });
   }
@@ -111,8 +110,9 @@ function App() {
         <div key={sour.id}>
           <input 
           type="checkbox" 
-          checked={checkbox.includes(sour.id)} 
-          onChange={() => handleCheck(sour.id)}/>
+          checked = {checkbox.includes(sour.id)}
+          onChange = {() => handleCheck(sour.id)}
+          />
           {sour.name}
         </div>
       )}
