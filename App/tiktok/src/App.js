@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import Content from './Content';
 
 var arr = [100, 200, 300];
 
@@ -51,6 +52,8 @@ function App() {
     const storageJob = JSON.parse(localStorage.getItem('jobs')) ?? []; // dung ?? thay vi || vi biet chac ket qua qua tra ve null hoac undifine
     return storageJob;
   });
+
+  const [show, setShow] = useState(false);
 
   const handleIncrease = () => {
     setCounter(counter + 1);
@@ -141,6 +144,9 @@ function App() {
           <li key={index}>{value}</li>
         )}
       </ul>
+      <hr/>
+      <button onClick={() => setShow(!show)}>Show</button>
+      {show && <Content/>}
     </div>
   );
 }

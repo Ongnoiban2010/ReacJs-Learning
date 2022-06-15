@@ -1,0 +1,134 @@
+a = 0 => false
+a = '' => false
+a = 1 > 2 => false
+NaN: dai dien cho mot kieu so khong hop le
+    VD: 10/ 'ABC'
+kiem tra co phai so hop le khong isNaN
+number.toFixed(): lam tron so
+--------------------------------
+làm việc với mảng:
+foreach()
+every(): kiểm tra tat ca cac phan tu trong mang, nếu tất cả có thoa man mot dieu kien gi do hay khong => return boolean
+some(): kiểm tra tat ca cac phan tu trong mang, nếu có một phần tử thỏa mãn thì sẽ trả về kết quả luôn => return boolean
+find(): trả về phần tử đầu tiên thỏa mãn
+filter(): trả về tất cả các phần tử thỏa mãn
+map(): tính toán thay đổi giá trị các phần tử bên trong mảng => return về một mảng mới
+reduce(): nhận về một kết quả duy nhất. Vd như tổng số coin
+-------------------------------------
+làm phẳng mảng:
+var a = [1,2, [3,4], 5, [6,7,8]]
+var newArr = a.reduce((flatOutput, depthItem) => {return flatOutput.concat(depthItem)}, []);
+=> output: [1,2,3,4,5,6,7,8]
+-------------------------------------
+Callback?
+- là hàm
+- được truyền qua đối số
+--------------------------------------
+Sử dung callback để custom lại map2
+Array.prototype.map2 = function(callback) {
+	var output = [];
+	var lengthArr = this.length;
+	for (var i = 0; i< lenght; i++) {
+		var result = callback(this[i], i);
+		output.push(result);
+	}
+	return output;
+
+}
+-----------------------------------------
+Json:
+- là gì: là một định dạng dữ liệu (chuỗi)
+-----------------------------------------
+Bất đồng bộ (async)
+- Callback hell: những call back phụ thuộc lẫn nhau
+VD: 
+	setTimeOut(function(){
+		console.log(1); //công việc 1
+		setTimeOut(function(){
+			console.log(2); //công việc 2
+			setTimeOut(function(){
+				console.log(3); //công việc 3
+			}, 1000)
+		}, 1000)
+	}, 1000)
+=> Promise ra đời để giải quyết nỗi đau này
+- Lý thuyết: promise có 3 trạng thái
+	+ 1. pending
+	+ 2. Fulfilled
+	+ 3. Reject
+	var promise = new Promise(
+		// Executor: được thực thi khi bạn gọi new Promise ngay trước cả khi bạn nhận được đối tượng promise
+		function(resolve, reject) {
+			// Logic
+			// Thành công: resolve()
+			// Thất bại: reject()	
+		}
+	)
+
+promise:
+	+ .then(function(){}): khi resolve được gọi thì callback then được gọi
+	+ .catch(function(){}): khi reject được gọi thì callback catch được gọi
+	+ .finally(function(){}): khi resolve hoặc rejecr được gọi thì callback finally được gọi
+- Tính chất chuỗi:
+  .then(function(){return 1})
+  .then(function(data){
+		console.log(data)
+	return 2;
+})
+=> thằng trước trả về data thì thằng sau sẽ nhận được
+=> Chú ý: nếu ko return promise thì nó sẽ chạy thằng liền dưới.
+- var promise = Promise.resolve('Success'); => luôn trả về resolve
+- var promise = Promise.reject('Success'); => luôn trả về reject
+- var promise = Promise.all([promise1, promise2).then(function(result));
+--------------------------------------------------------
+Fetch:
+- gọi api từ phía backend và ô front end nhận nội dung trả về và hiển thị ra ngoài cho người dùng thấy
+Backend => API => Fetch => JSON/XML
+------------------------------------------------------
+const a = {
+	name: 'Doan'
+};
+a.name = "SoKong"; => true: thay đổi thuộc tính thì vẫn đúng
+a = "Sokong"; => false: thay đổi giá trị
+------------------------------------------------------
+Enhanced object literals
+var fieldName = "name";
+var fieldPrice = "price";
+const ob = {
+	[fieldName]: "doan",  // => name: "doan"
+	[fieldPrice]: 12      // => price: 12
+}
+-----------------------------------------------------
+Destrucuring: phân rã (array or object)
+Rest: toán tử còn lại
+var array = ["java", "PHP", "css"];
+var [a, , c] = array;
+// => a = java, c = css
+var [a, ...rest] = array;
+
+var course = {
+	name: 'doan',
+	price: 12
+};
+var {name, price} = course;
+=> muốn đổi tên: var {name: parentName, price} = course;
+---------------------------------------------------------
+Spread: toán tử dải, các phần tử trùng nhau sẽ ko bị xóa
+VD1:
+var arr1 = ["java", "php", "css"];
+var arr2 = ["trang", "den"];
+var arr3 = [...arr1, ...arr2] // => output: ["java", "php", "css", "trang", "den"]; 
+VD2: 
+var spread = ["java", "php", "css"];
+function logger(a, b, c) {
+	console.log(a, b, c);
+}
+loggger(...spread);
+VD3:
+var spread = ["java", "php", "css"];
+function logger(...rest) {
+	for()....
+}
+loggger(...spread);
+--------------------------------------------------------
+Tagged template literals:
