@@ -3,16 +3,16 @@ import {useEffect, useState} from 'react';
 function Content() {
 
     const [title, setTitle] = useState('');
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         document.title = title;
-    })
-
-    fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch('https://jsonplaceholder.typicode.com/posts')
         .then(res => res.json())
         .then(post => {
-            console.log(post);
+            setPosts(post);
         })
+    }, [])
 
     return (
         <div>
@@ -20,7 +20,11 @@ function Content() {
                 value={title} 
                 onChange={(e) => setTitle(e.target.value)}
             />
-            {console.log('render')}
+            <ul>
+                {posts.map(post => (
+                    <li key={post.id}>{post.title}</li>
+                ))}
+            </ul>
         </div>
     )
 }
