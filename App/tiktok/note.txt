@@ -1,1 +1,16 @@
 3. useEffect with DOM events
+- Dom event:
+- Su dung phep 3 dau bang, neu state truoc do bang gia tri cu thi no se ko render lai component
+useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY >= 200) {
+                setShowGoToTop(true)
+                console.log('state')
+            } else {
+                setShowGoToTop(false)
+            }
+        }
+        window.addEventListener('scroll', handleScroll)
+    }, [])
+
+    console.log('re-render')
