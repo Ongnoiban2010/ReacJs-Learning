@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import Content from './Content';
+import UseRefComponent from './UseRefComponent';
 
 var arr = [100, 200, 300];
 
@@ -54,6 +55,7 @@ function App() {
   });
 
   const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
 
   const handleIncrease = () => {
     setCounter(counter + 1);
@@ -147,6 +149,8 @@ function App() {
       <hr/>
       <button onClick={() => setShow(!show)}>Show</button>
       {show && <Content/>}
+      <button onClick={() => setShow2(!show2)}>show content2</button>
+      {show2 && <UseRefComponent/>}
     </div>
   );
 }

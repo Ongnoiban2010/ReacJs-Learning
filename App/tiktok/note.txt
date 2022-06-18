@@ -14,3 +14,5 @@ useEffect(() => {
     }, [])
 
     console.log('re-render')
+- de trnah loi bi do di bo nho khi dung window.addEventListener thi tai thoi diem coponent bi unmount ta nen huy addEventListener bang cach cleanup function 
+- cleanup function ()
