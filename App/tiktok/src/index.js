@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import UseReducer from './UseReducer';
+import UseContextComponent from './UseContextComponent';
 import reportWebVitals from './reportWebVitals';
 
 // Fake comments
@@ -23,7 +23,7 @@ emitComment(3);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <UseReducer />
+    <UseContextComponent />
   // </React.StrictMode>
 );
 
