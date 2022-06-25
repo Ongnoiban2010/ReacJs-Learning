@@ -1,9 +1,11 @@
+import {ThemeContext} from './ThemeContext'
+import {useContext} from 'react';
 
-function Paragrap({theme}) {
-    console.log(theme)
+function Paragrap() {
+    const context = useContext(ThemeContext);
     return (
         <div>
-            <p className={theme}>Paragrap aaaaaaaaa</p>
+            <p className={context.theme}>Paragrap aaaaaaaaa</p>
         </div>
     )
 }

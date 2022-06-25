@@ -1,18 +1,16 @@
-import { useState } from 'react';
 import Toggle from './Toggle';
 import './App.css'
+import {ThemeContext} from './ThemeContext'
+import { useContext } from 'react';
+
 
 function UseContextComponent() {
-    const [theme, setTheme] = useState('dark');
-
-    var toggleThemem = () => {
-        setTheme(theme === 'dark' ? 'light' : 'dark');
-    }
+    const context = useContext(ThemeContext);
     return (
-        <div style={{padding: '20px'}}>
-            <button onClick={toggleThemem}>Toggle theme</button>
-            <Toggle theme={theme}/>
-        </div>
+            <div style={{padding: '20px'}}>
+                <button onClick={context.toggleThemem}>Toggle theme</button>
+                <Toggle/>
+            </div>
     )
 }
 

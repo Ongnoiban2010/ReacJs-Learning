@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import UseContextComponent from './UseContextComponent';
+import ContextUseReducer from './ContextUseReducer';
 import reportWebVitals from './reportWebVitals';
+import {StoreProvider} from './store'
 
 // Fake comments
 // phát đi một event tùy ý
@@ -23,7 +24,11 @@ emitComment(3);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <UseContextComponent />
+  // <ThemeProvider>
+    <StoreProvider>
+      <ContextUseReducer />
+    </StoreProvider>
+  // </ThemeProvider>
   // </React.StrictMode>
 );
 
