@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {BrowserRouter as Router} from 'react-router-dom';
+
 import './index.css';
-import AppDemoCss from './AppDemoCss';
+import AppRouterDemo from './AppRouterDemo';
 import reportWebVitals from './reportWebVitals';
 import {StoreProvider} from './store'
 
@@ -26,7 +28,9 @@ root.render(
   // <React.StrictMode>
   // <ThemeProvider>
     <StoreProvider>
-      <AppDemoCss />
+      <Router>
+        <AppRouterDemo />
+      </Router>
     </StoreProvider>
   // </ThemeProvider>
   // </React.StrictMode>

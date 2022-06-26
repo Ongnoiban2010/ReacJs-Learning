@@ -9,6 +9,7 @@ function AppDemoCss() {
             <Paragraph />
             <Button/>
             <Button primary/>
+            <Button primary disable/>
         </div>
     )
 }
