@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import UseRefComponent from './UseRefComponent';
+import AppDemoCss from './AppDemoCss';
 import reportWebVitals from './reportWebVitals';
 import {StoreProvider} from './store'
 
@@ -26,7 +26,7 @@ root.render(
   // <React.StrictMode>
   // <ThemeProvider>
     <StoreProvider>
-      <UseRefComponent />
+      <AppDemoCss />
     </StoreProvider>
   // </ThemeProvider>
   // </React.StrictMode>
