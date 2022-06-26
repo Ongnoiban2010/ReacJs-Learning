@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import ContextUseReducer from './ContextUseReducer';
+import UseRefComponent from './UseRefComponent';
 import reportWebVitals from './reportWebVitals';
 import {StoreProvider} from './store'
 
@@ -26,7 +26,7 @@ root.render(
   // <React.StrictMode>
   // <ThemeProvider>
     <StoreProvider>
-      <ContextUseReducer />
+      <UseRefComponent />
     </StoreProvider>
   // </ThemeProvider>
   // </React.StrictMode>
