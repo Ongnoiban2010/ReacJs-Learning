@@ -1,13 +1,10 @@
-import logo from './logo.svg';
-import Button from './components/Button'
-import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <Button/>
-    </div>
-  );
+    return (
+        <div className="App">
+           <h1>Hello World</h1>
+        </div>
+    );
 }
 
 export default App;
