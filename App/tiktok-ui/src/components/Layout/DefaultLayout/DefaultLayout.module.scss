@@ -6,6 +6,7 @@
 
 .container {
     width: 1150px;
+    padding: 0 var(--default-layout-horizontal-spacer);
     min-height: 1000vh;
     //     background-color: #333;
 }

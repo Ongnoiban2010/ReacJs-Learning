@@ -27,7 +27,6 @@ function Button({ to, href, leftIcon, rightIcon, onClick, className, children, r
         props.href = href;
         Comp = 'a';
     }
-    console.log(primary);
     const classes = cx('wrapper', {
         primary,
         outline,
