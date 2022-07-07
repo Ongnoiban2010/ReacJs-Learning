@@ -11,6 +11,8 @@ import AccountItem from '~/components/AccountItem';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Search.module.scss'
 import { SearchIcon } from '~/components/Icon';
+import {useDebounce} from '~/hooks';
+import * as searchServices from '~/apiServices/searchServices';
 
 const cx = classNames.bind(styles);
 
@@ -19,13 +21,29 @@ function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
+    const [loading, setLoading] = useState(false);
     const inpurRef = useRef();
 
+    // 1. ''
+    // 2. 'h' => debounced = '' => deps ko thay đổi => ko chạy callback
+    // 3. 'ho' => debounced = '' => deps ko thay đổi => ko chạy callback
+    // 4. 'hoa' => người dùng ko nhập nữa => setDebounceValue('hoa') => render lại Comp => debounced = 'hoa'
+    //  => debounced đã thay đổi giá trị => useEffect chạy callback => gọi api
+    const debounced = useDebounce(searchValue, 500);
+
     useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1, 2,3]);
-        }, 0);
-    }, []);
+        if(!debounced.trim()) {
+            setSearchResult([]);
+            return;
+        };
+        const fetchAPI = async () => {
+            setLoading(true);
+            const result = await searchServices.search(debounced);
+            setSearchResult(result);
+            setLoading(false)
+        }
+        fetchAPI();
+    }, [debounced]);
 
     const handleClear = () => {
         setSearchValue('');
@@ -45,10 +63,10 @@ function Search() {
                 <div className={cx('search-result')} {...attrs}>
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Account</h4>
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
+                        {searchResult.map(result => (
+                            <AccountItem key={result.id} data={result}/>
+                        ))
+                        }
                     </PopperWrapper>
                 </div>
             )}
@@ -59,10 +77,10 @@ function Search() {
                 onChange={e => setSearchValue(e.target.value)}
                 onFocus={() => setShowResult(true)}
                 />
-                {!!searchValue &&  <button className={cx('clear')} onClick={handleClear}>
+                {!!searchValue && !loading &&  <button className={cx('clear')} onClick={handleClear}>
                     <FontAwesomeIcon icon={faCircleXmark} />
                 </button>}
-                {/* <FontAwesomeIcon icon={faSpinner} className={cx('loading')} /> */}
+                {loading && <FontAwesomeIcon icon={faSpinner} className={cx('loading')} />}
                 <button className={cx('search-btn')}>
                     <SearchIcon/>
                 </button>
