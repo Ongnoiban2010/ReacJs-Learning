@@ -1,11 +1,26 @@
 import classNames from 'classnames/bind';
-import styles from './Button.module.scss';
 import { Link } from 'react-router-dom';
-import { type } from '@testing-library/user-event/dist/type';
+import PropTypes from 'prop-types';
+
+import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Button({ to, href, leftIcon, rightIcon, onClick, className, children, rounded = false, disabled = false, text = false, large=false, small=false, primary=false, outline=false, ...passProps }) {
+function Button({ 
+    to, 
+    href, 
+    leftIcon, 
+    rightIcon, 
+    onClick, 
+    className, 
+    children, 
+    rounded = false, 
+    disabled = false, 
+    text = false, 
+    large=false, 
+    small=false, 
+    primary=false, 
+    outline=false, ...passProps }) {
     let Comp = 'button';
     const props = {
         onClick,
@@ -44,6 +59,24 @@ function Button({ to, href, leftIcon, rightIcon, onClick, className, children, r
             {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
         </Comp>
     );
+}
+
+Button.propTypes = {
+    children: PropTypes.node.isRequired,
+    // validate prop bắt buộc truyền
+    to: PropTypes.string,
+    href: PropTypes.string,
+    leftIcon: PropTypes.node,
+    rightIcon: PropTypes.node,
+    onClick: PropTypes.func,
+    className: PropTypes.string,
+    rounded: PropTypes.bool,
+    disabled: PropTypes.bool,
+    text: PropTypes.bool,
+    large: PropTypes.bool,
+    small: PropTypes.bool,
+    primary: PropTypes.bool,
+    outline: PropTypes.bool,
 }
 
 export default Button;
