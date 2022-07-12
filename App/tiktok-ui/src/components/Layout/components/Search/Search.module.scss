@@ -26,6 +26,7 @@
         padding: 12px 0;
         height: 100%;
         caret-color: var(--primary);
+        font-family: var(--font-family);
     }
     input:not(:placeholder-shown)~.search-btn {
         color: rgba(22, 24, 35, 0.75);
