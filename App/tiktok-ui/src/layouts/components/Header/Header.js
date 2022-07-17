@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import {
     faCircleQuestion,
     faCoins,
@@ -17,7 +16,7 @@ import 'tippy.js/dist/tippy.css';
 
 import images from '~/assets/images';
 import Button from '~/components/Button';
-import { UploadIcon } from '~/components/Icon';
+import {UploadIcon} from '~/components/Icons';
 import Image from '~/components/Image';
 import Menu from '~/components/Popper/Menu';
 import Search from '../Search';
@@ -96,7 +95,7 @@ function Header() {
                 <Link to={config.routes.home} className={cx('logo-link')}>
                     <img src={images.logo} alt="tiktok" />
                 </Link>
-                {/* <Button>{[1,2,3]}</Button> */}
+                <Button>{[1,2,3]}</Button>
                 <Search />
                 <div className={cx('actions')}>
                     {currentUser ? (
@@ -134,6 +133,3 @@ function Header() {
 }
 
 export default Header;
-=======
-export {default} from './Header';
->>>>>>> Stashed changes

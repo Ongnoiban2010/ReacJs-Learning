@@ -31,6 +31,14 @@ function Menu({children, items = [], hideOnClick = false, onChange = defaultFn})
         })
     }
 
+    const handleResettoFirstPage = () => {
+        setHistory(prev => prev.slice(0, 1))
+    }
+
+    const handleResetMenu = () => {
+        setHistory(prev => prev.slice(0, prev.length - 1))
+    }
+
     return ( 
         <Tippy 
         offset={[12,8]}
@@ -40,14 +48,12 @@ function Menu({children, items = [], hideOnClick = false, onChange = defaultFn})
         render={(attrs) => (
             <div className={cx('menu-list')} {...attrs}>
                 <PopperWrapper className={cx('menu-popper')}>
-                    {history.length > 1 && <Header title="Language" onBack={() => {
-                        setHistory(prev => prev.slice(0, prev.length - 1))
-                    }}/>}
+                    {history.length > 1 && <Header title={current.title} onBack={handleResetMenu}/>}
                     <div className={cx('menu-body')}>{renderItems()}</div>
                 </PopperWrapper>
             </div>
         )}
-        onHide={() => setHistory(prev => prev.slice(0, 1))}
+        onHide={handleResettoFirstPage}
         hideOnClick={hideOnClick}
         >
             {children}

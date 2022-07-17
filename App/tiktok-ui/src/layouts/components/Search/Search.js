@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
@@ -8,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import AccountItem from '~/components/AccountItem';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Search.module.scss';
-import { SearchIcon } from '~/components/Icon';
+import { SearchIcon } from '~/components/Icons';
 import { useDebounce } from '~/hooks';
 import * as searchServices from '~/services/searchServices';
 
@@ -17,30 +16,30 @@ const cx = classNames.bind(styles);
 function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(false);
+    const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
     const inpurRef = useRef();
 
     // 1. ''
-    // 2. 'h' => decouncedValue = '' => deps ko thay đổi => ko chạy callback
-    // 3. 'ho' => decouncedValue = '' => deps ko thay đổi => ko chạy callback
-    // 4. 'hoa' => người dùng ko nhập nữa => setDebounceValue('hoa') => render lại Comp => decouncedValue = 'hoa'
-    //  => decouncedValue đã thay đổi giá trị => useEffect chạy callback => gọi api
-    const decouncedValue = useDebounce(searchValue, 500);
+    // 2. 'h' => debounced = '' => deps ko thay đổi => ko chạy callback
+    // 3. 'ho' => debounced = '' => deps ko thay đổi => ko chạy callback
+    // 4. 'hoa' => người dùng ko nhập nữa => setDebounceValue('hoa') => render lại Comp => debounced = 'hoa'
+    //  => debounced đã thay đổi giá trị => useEffect chạy callback => gọi api
+    const debounced = useDebounce(searchValue, 500);
 
     useEffect(() => {
-        if (!decouncedValue.trim()) {
+        if (!debounced.trim()) {
             setSearchResult([]);
             return;
         }
         const fetchAPI = async () => {
             setLoading(true);
-            const result = await searchServices.search(decouncedValue);
+            const result = await searchServices.search(debounced);
             setSearchResult(result);
             setLoading(false);
         };
         fetchAPI();
-    }, [decouncedValue]);
+    }, [debounced]);
 
     const handleClear = () => {
         setSearchValue('');
@@ -103,6 +102,3 @@ function Search() {
 }
 
 export default Search;
-=======
-export {default} from './Search'
->>>>>>> Stashed changes
